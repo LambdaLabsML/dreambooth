@@ -30,3 +30,5 @@ adam_epsilon: 1.0e-8
 max_grad_norm: 1.0
 clip_grad: true
 mixed_precision: "no"
+learnable_embedding: false
+embedding_lr: 1e-4

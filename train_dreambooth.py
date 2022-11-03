@@ -23,6 +23,7 @@ from tqdm.auto import tqdm
 from transformers import CLIPTextModel, CLIPTokenizer
 import wandb
 from omegaconf import OmegaConf
+from pipeline import DreamboothPipeline
 
 logger = get_logger(__name__)
 
@@ -126,8 +127,7 @@ class DreamBoothDataset(Dataset):
         example["instance_images"]  = self._load_img(self.instance_images_path[index % self.num_instance_images])
         example["instance_prompt_ids"] = self.tokenizer(
             self.instance_prompt,
-            padding="do_not_pad",
-            truncation=True,
+            padding="max_length",
             max_length=self.tokenizer.model_max_length,
         ).input_ids
 
@@ -135,8 +135,7 @@ class DreamBoothDataset(Dataset):
             example["class_images"] = self._load_img(self.class_images_path[index % self.num_class_images])
             example["class_prompt_ids"] = self.tokenizer(
                 self.class_prompt,
-                padding="do_not_pad",
-                truncation=True,
+                padding="max_length",
                 max_length=self.tokenizer.model_max_length,
             ).input_ids
 
@@ -289,6 +288,13 @@ def main(args):
     params_to_optimize = (
         itertools.chain(unet.parameters(), text_encoder.parameters()) if args.train_text_encoder else unet.parameters()
     )
+    if args.learnable_embedding:
+        learnable_embedding = torch.randn((1, 1, 768), requires_grad=True, device=accelerator.device)
+        params_to_optimize = [
+            {"params": params_to_optimize},
+            {"params": learnable_embedding, "lr": args.embedding_lr},
+        ]
+
     optimizer = optimizer_class(
         params_to_optimize,
         lr=args.learning_rate,
@@ -416,6 +422,13 @@ def main(args):
                 # Get the text embedding for conditioning
                 encoder_hidden_states = text_encoder(batch["input_ids"])[0]
 
+                if args.learnable_embedding:
+                    # Am i doing this right in the case of no prior preservation?
+                    states_instance = encoder_hidden_states[:bsz//2,...]
+                    states_prior = encoder_hidden_states[bsz//2:,...]
+                    states_instance = torch.cat((states_instance[:,:-1,:], learnable_embedding.tile(bsz//2, 1, 1)), dim=1)
+                    encoder_hidden_states = torch.cat((states_instance, states_prior), dim=0)
+
                 # Predict the noise residual
                 noise_pred = unet(noisy_latents, timesteps, encoder_hidden_states).sample
 
@@ -473,14 +486,18 @@ def main(args):
 
             if global_step % val_steps == 0:
 
-                scheduler = DDIMScheduler.from_config("CompVis/stable-diffusion-v1-4", subfolder="scheduler")
-                scheduler.steps_offset = 0
-                scheduler.clip_sample = False
-                pipeline = StableDiffusionPipeline.from_pretrained(
+                scheduler = DDIMScheduler(
+                        beta_start=0.00085,
+                        beta_end=0.012,
+                        beta_schedule="scaled_linear",
+                        clip_sample=False,
+                        set_alpha_to_one=False,
+                    )
+                pipeline = DreamboothPipeline.from_pretrained(
                     args.pretrained_model_name_or_path,
                     unet=accelerator.unwrap_model(unet),
                     text_encoder=accelerator.unwrap_model(text_encoder),
-                    # scheduler=scheduler,
+                    scheduler=scheduler,
                     safety_checker=None,
                 ).to(accelerator.device)
 
@@ -493,6 +510,7 @@ def main(args):
                         guidance_scale=val_guidance_scale,
                         generator=generator,
                         output_type='numpy',
+                        special_embedding=learnable_embedding if args.learnable_embedding else None,
                         ).images
                     images = accelerator.gather(torch.tensor(images, device=accelerator.device).contiguous())
                     if accelerator.is_main_process:
@@ -515,7 +533,8 @@ def main(args):
             text_encoder=accelerator.unwrap_model(text_encoder),
             revision=args.revision,
         )
-        pipeline.save_pretrained(args.output_dir)
+        output_dir = f"{args.output_dir}/{wandb.run.id}"
+        pipeline.save_pretrained(output_dir)
 
     accelerator.end_training()
 
