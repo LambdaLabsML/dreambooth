@@ -1,4 +1,4 @@
-instance_data_dir: "datasets/huw-edwards-cropped-tight"
+instance_data_dir: "datasets/j-small"
 output_dir: "logs"
 pretrained_model_name_or_path: "CompVis/stable-diffusion-v1-4"
 val_prompts: val_prompts.txt
@@ -32,3 +32,5 @@ clip_grad: true
 mixed_precision: "no"
 learnable_embedding: false
 embedding_lr: 1e-4
+limit_timesteps_lo: null
+limit_timesteps_hi: null
