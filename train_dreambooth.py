@@ -10,6 +10,7 @@ import torch
 import torch.nn.functional as F
 import torch.utils.checkpoint
 from torch.utils.data import Dataset
+from torchvision import transforms
 
 from accelerate import Accelerator
 from accelerate.logging import get_logger
@@ -81,6 +82,7 @@ class DreamBoothDataset(Dataset):
         class_prompt=None,
         size=512,
         center_crop=False,
+        augs=None,
     ):
         self.size = size
         self.center_crop = center_crop
@@ -105,8 +107,21 @@ class DreamBoothDataset(Dataset):
         else:
             self.class_data_root = None
 
+        if augs == "hflip":
+            augs = [transforms.RandomHorizontalFlip(),]
+        elif augs == "multi":
+            augs = [
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomAffine(degrees=10, scale=(0.9, 1.1), interpolation=transforms.InterpolationMode.BILINEAR),
+                ]
+        elif augs is None:
+            augs = []
+        else:
+            raise ValueError(f"Unrecognised augs {augs}")
+
         self.image_transforms = transforms.Compose(
             [
+                *augs,
                 transforms.Resize(size, interpolation=transforms.InterpolationMode.BILINEAR),
                 transforms.CenterCrop(size) if center_crop else transforms.RandomCrop(size),
                 transforms.ToTensor(),

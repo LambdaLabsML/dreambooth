@@ -34,3 +34,4 @@ learnable_embedding: false
 embedding_lr: 1e-4
 limit_timesteps_lo: null
 limit_timesteps_hi: null
+augs: null # hflip, multi
