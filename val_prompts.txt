@@ -1,10 +1,16 @@
-a photo of sks person
-a photo of sks person with long flowing hair eating a burger
-a photo of sks person wearing sunglasses
-a detailed oil painting of sks person
-a animated cartoon character of sks person
-a loose expressive pencil sketch of sks person, trending on artstation
-a photo of sks person as the joker from the dark knight
-a photo of sks person winning a gold medal at the olympics
-a photo of a person
-a beautiful landscape painting
+a photo of __instance__ __class__
+a photo of __instance__ __class__ with long flowing hair eating a burger
+a photo of __instance__ __class__ wearing sunglasses
+a animated cartoon character of __instance__ __class__
+a loose expressive pencil sketch of __instance__ __class__, trending on artstation
+a photo of __instance__ __class__ as the joker from the dark knight
+a photo of a __class__
+colorful cinematic still of __instance__ __class__, __instance__ __class__ with long hair, color lights, on stage, ultrarealistic
+impressionist painting of __instance__ __class__ by Daniel F Gerhartz, portrait of __instance__ __class__ painted in an impressionist style, nature, trees
+pencil sketch of __instance__ __class__, inpired by greg rutkowski, digital art by artgem
+photo of __instance__ __class__ astronaut, astronaut, glasses, helmet in alien world abstract oil painting, greg rutkowski, detailed face
+photo of __instance__ __class__ as firefighter, helmet, ultrarealistic, leica 30mm
+photo of __instance__ __class__ with glasses, bowler hat, in django unchained movie, ultrarealistic, leica 30mm
+photo of __instance__ __class__ as marvel spiderman, ultrarealistic, movie still, sharp in focus
+photo of __instance__ __class__ as steampunk warrior, neon organic vines, glasses, digital painting
+__instance__ __class__ as a fairy princess with wings, highly detailed, photorealistic portrait, studio lighting, crisp quality and light reflections, unreal engine 5

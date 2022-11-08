@@ -224,8 +224,10 @@ def main(args):
         wandb.init(project="dreambooth", config=OmegaConf.to_container(args))
 
     if args.val_prompts is not None:
+        fill_placeholders = lambda x: x.replace("__instance__", args.instance_str).replace("__class__", args.class_str)
         with open(args.val_prompts, 'rt') as f:
             val_prompts = [x.strip("\n") for x in f.readlines()]
+            val_prompts = [fill_placeholders(x) for x in val_prompts]
     else:
         val_prompts = args.instance_prompt
 

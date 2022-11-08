@@ -2,9 +2,11 @@ instance_data_dir: "datasets/j-small"
 output_dir: "logs"
 pretrained_model_name_or_path: "CompVis/stable-diffusion-v1-4"
 val_prompts: val_prompts.txt
-instance_prompt: "a photo of sks person"
+instance_str: sks
+class_str: person
+instance_prompt: "a photo of ${instance_str} ${class_str}"
 class_data_dir: "datasets/person-class"
-class_prompt: "a photo of person"
+class_prompt: "a photo of ${class_str}"
 resolution: 512
 train_batch_size: 2
 gradient_accumulation_steps: 1
