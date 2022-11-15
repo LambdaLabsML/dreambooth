@@ -37,3 +37,5 @@ embedding_lr: 1e-4
 limit_timesteps_lo: null
 limit_timesteps_hi: null
 augs: null # hflip, multi
+text_encoder_lr: ${learning_rate}
+text_encoder_max_steps: null

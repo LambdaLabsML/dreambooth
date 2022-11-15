@@ -215,9 +215,13 @@ def make_prior_dataset(args, accelerator):
 
 
 def main(args):
+    from accelerate import DistributedDataParallelKwargs
+
+    ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
+        kwargs_handlers=[ddp_kwargs],
     )
 
     if accelerator.is_main_process:
@@ -302,15 +306,17 @@ def main(args):
     else:
         optimizer_class = torch.optim.AdamW
 
-    params_to_optimize = (
-        itertools.chain(unet.parameters(), text_encoder.parameters()) if args.train_text_encoder else unet.parameters()
-    )
+    unet_params = list(unet.parameters())
+
+    params_to_optimize = [
+        {"params": unet_params},
+    ]
     if args.learnable_embedding:
         learnable_embedding = torch.randn((1, 1, 768), requires_grad=True, device=accelerator.device)
-        params_to_optimize = [
-            {"params": params_to_optimize},
-            {"params": learnable_embedding, "lr": args.embedding_lr},
-        ]
+        params_to_optimize.append({"params": learnable_embedding, "lr": args.embedding_lr})
+
+    if args.train_text_encoder:
+        params_to_optimize.append({"params": text_encoder.parameters(), "lr": args.text_encoder_lr})
 
     optimizer = optimizer_class(
         params_to_optimize,
@@ -545,6 +551,11 @@ def main(args):
 
             if global_step >= args.max_train_steps:
                 break
+
+            if args.text_encoder_max_steps is not None and \
+                global_step >= args.text_encoder_max_steps:
+                text_encoder.requires_grad = False
+                args.train_text_encoder = False
 
         accelerator.wait_for_everyone()
 
