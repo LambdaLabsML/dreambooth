@@ -16,6 +16,6 @@ accelerate config
 
 Run an experiment like:
 
-`accelerate launch --main_process_port 1248  --gpu_ids 0,1 train_dreambooth.py --config_file config.yaml learning_rate=5e-6`
+`accelerate launch --gpu_ids 0,1 train_dreambooth.py --config_file config.yaml learning_rate=5e-6`
 
-any arguments passed as <name>=<value> will be added to the config
+any arguments passed as `<name>=<value>` will be added to the config. Arguments passed as `--<name> <value>` before `train_dreambooth.py` are expected to be for huggingface accelerate, and those after are options for the script, see `python train_dreambooth.py --help`
