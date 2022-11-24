@@ -2,7 +2,7 @@ instance_data_dir: "datasets/j-small"
 output_dir: "logs"
 pretrained_model_name_or_path: "CompVis/stable-diffusion-v1-4"
 val_prompts: val_prompts.txt
-instance_str: sks
+instance_str: sksbeikkpic
 class_str: person
 instance_prompt: "a photo of ${instance_str} ${class_str}"
 class_data_dir: "datasets/person-class"
@@ -39,3 +39,4 @@ limit_timesteps_hi: null
 augs: null # hflip, multi
 text_encoder_lr: ${learning_rate}
 text_encoder_max_steps: null
+wandb_mode: online #online, offline, disabled
