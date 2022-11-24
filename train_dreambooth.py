@@ -517,7 +517,7 @@ def main(args):
             val_inference_steps = 100
             val_guidance_scale = 7.5
 
-            if global_step % val_steps == 0:
+            if global_step % val_steps == 0 and args.wandb_mode != "disabled":
 
                 scheduler = DDIMScheduler(
                         beta_start=0.00085,
@@ -547,12 +547,11 @@ def main(args):
                         ).images
                     images = accelerator.gather(torch.tensor(images, device=accelerator.device).contiguous())
                     if accelerator.is_main_process:
-                        if args.wandb_mode != "disabled":
-                            images = pipeline.numpy_to_pil(images.cpu().numpy())
-                            wandb.log(
-                                {f"val/examples/{idx:02}": [wandb.Image(image, caption=prompt) for image in images]},
-                                step=global_step
-                                )
+                        images = pipeline.numpy_to_pil(images.cpu().numpy())
+                        wandb.log(
+                            {f"val/examples/{idx:02}": [wandb.Image(image, caption=prompt) for image in images]},
+                            step=global_step
+                            )
 
             if global_step >= args.max_train_steps:
                 break
@@ -585,4 +584,7 @@ def main(args):
 
 if __name__ == "__main__":
     args = parse_args()
+    if args.use_tf32:
+        torch.backends.cuda.matmul.allow_tf32 = True
+        print("TF32 is on --------------------------------")        
     main(args)
