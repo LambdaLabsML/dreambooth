@@ -67,15 +67,15 @@ def main():
     args = parse_args()
 
     tests = {
-            "1": ["colorful cinematic still of " + args.token + " person, armor, cyberpunk,background made of brain cells, back light, organic, art by greg rutkowski, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide, "rutkowski"],
-            "2": ["pencil sketch of  " + args.token + " person inpired by greg rutkowski, digital art by artgem", args.num_pred_steps, args.guide, "rutkowskiartgem"],
-            "3": ["photo, colorful cinematic still of  " + args.token + " person, organic armor, cyberpunk, background brain cells mesh, art by greg rutkowski", args.num_pred_steps, args.guide, "rutkowskibraincells"],
-            "4": ["colorful cinematic still of " + args.token + " person, " + args.token + " person with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
-            "5": ["photo, colorful cinematic still of  " + args.token + " person with organic armor, cyberpunk background,  " + args.token + " person, greg rutkowski", args.num_pred_steps, args.guide, "cyberpunkrutkowski"],
-            "6": ["photo of  " + args.token + " person astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
-            "7": ["photo of  " + args.token + " person as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
-            "8": ["photo of  " + args.token + " person as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
-            "9": ["impressionist painting of  " + args.token + " person by Daniel F Gerhartz, (( " + args.token + " person with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
+            "1": ["photo, colorful cinematic portrait of " + args.token + " person, armor, cyberpunk,background made of brain cells, back light, organic, art by greg rutkowski, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide, "rutkowski"],
+            "2": ["pencil sketch portrait of  " + args.token + " person inpired by greg rutkowski, digital art by artgem", args.num_pred_steps, args.guide, "rutkowskiartgem"],
+            "3": ["photo, colorful cinematic portrait of  " + args.token + " person, organic armor, cyberpunk, background brain cells mesh, art by greg rutkowski", args.num_pred_steps, args.guide, "rutkowskibraincells"],
+            "4": ["photo,colorful cinematic portrait of " + args.token + " person, " + args.token + " person with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
+            "5": ["photo, colorful cinematic portrait of  " + args.token + " person with organic armor, cyberpunk background,  " + args.token + " person, greg rutkowski", args.num_pred_steps, args.guide, "cyberpunkrutkowski"],
+            "6": ["photo portrait of  " + args.token + " person astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
+            "7": ["photo portrait of  " + args.token + " person as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
+            "8": ["photo portrait of  " + args.token + " person as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
+            "9": ["impressionist portrait painting of  " + args.token + " person by Daniel F Gerhartz, (( " + args.token + " person with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
     }
 
     if args.ddim:
@@ -99,7 +99,7 @@ def main():
             safety_checker=None).to("cuda")    
 
     Path(args.pred_path).mkdir(parents=True, exist_ok=True)
-        
+
     for i in range(args.num_preds):
         for key in tests:
             image = pipe(tests[key][0], num_inference_steps=tests[key][1], guidance_scale=tests[key][2]).images[0]
