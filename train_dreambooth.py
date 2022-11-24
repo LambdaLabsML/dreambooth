@@ -574,8 +574,7 @@ def main(args):
         if args.wandb_mode != "disabled":
             output_dir = f"{args.output_dir}/{wandb.run.id}"
         else:
-            instance_id = args.instance_data_dir.split("/")[-1]
-            output_dir = f"{args.output_dir}/{instance_id}"
+            output_dir = f"{args.output_dir}"
             os.makedirs(output_dir, exist_ok=True)
         pipeline.save_pretrained(output_dir)
 
