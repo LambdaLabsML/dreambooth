@@ -1,8 +1,13 @@
-# dreambooth
+# Dreambooth
 
-Install
+## NeuRIPS2022 Workshop
 
-something like
+For NeuRIPS workshop, please use this [guide](./NeuRIPS.md) to run the Jupyter notebooks in Lambda Cloud IDE.
+
+
+## Guide
+
+Install in 
 
 ```
 python -m venv .venv --prompt dreambooth && \
@@ -16,15 +21,12 @@ python -m ipykernel install --user --name=venv
 accelerate config
 ```
 
-
-Run an experiment like:
-
-
+Run a training job:
 ```
 export INPUT_DIR=<path-to-input-image-folder>
 export MODEL_DIR=<path-to-output-model>
-export LR=1e-6
 export TOKEN=aabbccddeeffgg
+export LR=1e-6
 
 accelerate launch --gpu_ids 0 \
   train_dreambooth.py \
@@ -40,3 +42,19 @@ accelerate launch --gpu_ids 0 \
 ```
 
 any arguments passed as `<name>=<value>` will be added to the config. Arguments passed as `--<name> <value>` before `train_dreambooth.py` are expected to be for huggingface accelerate, and those after are options for the script, see `python train_dreambooth.py --help`
+
+
+Try the model with some testing prompts:
+```
+export MODEL_DIR=<path-to-output-model>
+export PRED_DIR=<path-to-save-output-image>
+export TOKEN=aabbccddeeffgg
+export NUM_PRED=<number-of-predictions-per-prompt>
+
+accelerate launch --gpu_ids 0 python test_dreambooth.py \
+--model_path $MODEL_DIR \
+--pred_path $PRED_DIR \
+--num_preds $NUM_PRED \
+--token $TOKEN \
+--ddim
+```
