@@ -1,9 +1,9 @@
-diffusers>==0.5.0
-accelerate
-torchvision
-transformers>=4.21.0
-ftfy
-tensorboard
-modelcards
+diffusers==0.7.2
+accelerate==0.14.0
+torchvision==0.14.0
+transformers==4.24.0
+ftfy==6.1.1
+tensorboard==2.11.0
+modelcards==0.1.6
 wandb
 omegaconf

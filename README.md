@@ -5,11 +5,11 @@ Install
 something like
 
 ```
-python -m venv .venv --prompt dreambooth
-. .venv/bin/activate
-pip install --upgrade pip
-pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu116
-pip install -r requirements.txt
+python -m venv .venv --prompt dreambooth && \
+. .venv/bin/activate && \
+pip install --upgrade pip && \
+pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu116 && \
+pip install -r requirements.txt && \
 accelerate config
 ```
 
