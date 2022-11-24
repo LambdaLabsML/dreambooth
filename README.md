@@ -10,6 +10,9 @@ python -m venv .venv --prompt dreambooth && \
 pip install --upgrade pip && \
 pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu116 && \
 pip install -r requirements.txt && \
+pip install ipykernel  && \
+pip install jupyterlab  && \
+python -m ipykernel install --user --name=venv
 accelerate config
 ```
 
