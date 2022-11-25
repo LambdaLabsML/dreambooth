@@ -22,7 +22,7 @@ Click the refresh button in the `File Browser` (on the left side of the IDE), yo
 
 ### Run `setup.ipynb`
 
-This notebook will clone the dreambooth repo, install a number of python packages needed for this pratice.
+This notebook will clone the DreamBooth repo, install a number of python packages needed for this pratice.
 
 It will create a folder at `/home/ubuntu/data` for you to upload the training photos.
 
@@ -35,11 +35,11 @@ The last step in thie notebook will ask for a access token for downloading the S
 <img src="./images/hf_model_card.jpg" alt="drawing" style="width:480px;"/>
 
 ### Run `train.ipynb`
-This notebook will train a dreambooth model using the images you just uploaded.
+This notebook will train a DreamBooth model using the images you just uploaded.
 
 Once trained, it will run some validations using the prompts in the `test_dreambooth.py` script.
 
-### Run `test.ipynb`
-You can use this notebook to play with the model you just trained. There are also some examples of prompt engineering tricks in it!
+### Run `test_prompt.ipynb` and `test.ipynb`
+You can use these notebook to play with the model you just trained. 
 
 ## Q&A
