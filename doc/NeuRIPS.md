@@ -12,7 +12,8 @@ Create a new `Terminal` by clicking the `Terminal` button. In the terminal, run 
 ```
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/setup.ipynb && \
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/train.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/test.ipynb
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/test.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/test_prompt.ipynb
 ```
 
 Click the refresh button in the `File Browser` (on the left side of the IDE), you should see `setup.ipynb`, `train.ipynb` and `test.ipynb`. 
