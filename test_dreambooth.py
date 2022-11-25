@@ -30,6 +30,12 @@ def parse_args(input_args=None):
         help="Special token.",
     )
     parser.add_argument(
+        "--class_str",
+        type=str,
+        default="person",
+        help="Class string to help the model understand what class the token is.",
+    )
+    parser.add_argument(
         "--tests",
         type=str,
         default="all",
@@ -65,17 +71,19 @@ def parse_args(input_args=None):
 
 def main():
     args = parse_args()
-
+    
+    token_class_str = args.token + " " + args.class_str
+    
     tests = {
-            "1": ["photo, colorful cinematic portrait of " + args.token + " person, armor, cyberpunk,background made of brain cells, back light, organic, art by greg rutkowski, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide, "rutkowski"],
-            "2": ["pencil sketch portrait of  " + args.token + " person inpired by greg rutkowski, digital art by artgem", args.num_pred_steps, args.guide, "rutkowskiartgem"],
-            "3": ["photo, colorful cinematic portrait of  " + args.token + " person, organic armor, cyberpunk, background brain cells mesh, art by greg rutkowski", args.num_pred_steps, args.guide, "rutkowskibraincells"],
-            "4": ["photo,colorful cinematic portrait of " + args.token + " person, " + args.token + " person with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
-            "5": ["photo, colorful cinematic portrait of  " + args.token + " person with organic armor, cyberpunk background,  " + args.token + " person, greg rutkowski", args.num_pred_steps, args.guide, "cyberpunkrutkowski"],
-            "6": ["photo portrait of  " + args.token + " person astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
-            "7": ["photo portrait of  " + args.token + " person as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
-            "8": ["photo portrait of  " + args.token + " person as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
-            "9": ["impressionist portrait painting of  " + args.token + " person by Daniel F Gerhartz, (( " + args.token + " person with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
+            "1": ["photo, colorful cinematic portrait of " + token_class_str + ", armor, cyberpunk,background made of brain cells, back light, organic, art by greg rutkowski, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide, "rutkowski"],
+            "2": ["pencil sketch portrait of  " + token_class_str + " inpired by greg rutkowski, digital art by artgem", args.num_pred_steps, args.guide, "rutkowskiartgem"],
+            "3": ["photo, colorful cinematic portrait of  " + token_class_str + ", organic armor, cyberpunk, background brain cells mesh, art by greg rutkowski", args.num_pred_steps, args.guide, "rutkowskibraincells"],
+            "4": ["photo,colorful cinematic portrait of " + token_class_str + ", " + token_class_str + " with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
+            "5": ["photo, colorful cinematic portrait of  " + token_class_str + " with organic armor, cyberpunk background,  " + token_class_str + ", greg rutkowski", args.num_pred_steps, args.guide, "cyberpunkrutkowski"],
+            "6": ["photo portrait of  " + token_class_str + " astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
+            "7": ["photo portrait of  " + token_class_str + " as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
+            "8": ["photo portrait of  " + token_class_str + " as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
+            "9": ["impressionist portrait painting of  " + token_class_str + " by Daniel F Gerhartz, (( " + token_class_str + " with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
     }
 
     if args.ddim:
@@ -104,7 +112,7 @@ def main():
         for key in tests:
             image = pipe(tests[key][0], num_inference_steps=tests[key][1], guidance_scale=tests[key][2]).images[0]
             timestr = time.strftime("%Y%m%d-%H%M%S")
-            image.save(args.pred_path + "/" + key + "-" + tests[key][3] + "-" + timestr + "-" + ".png")
+            image.save(args.pred_path + "/" + key + "-" + tests[key][3] + "-" + timestr + ".png")
         
 if __name__ == "__main__":
     main()
