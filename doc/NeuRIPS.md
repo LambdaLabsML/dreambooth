@@ -27,8 +27,6 @@ You need to click the Cloud IDE `Launch` button (the purple button on the right 
 <img src="./images/lambda_cloud_jupyter_hub.jpg" alt="drawing" style="width:480px;"/>
 
 
-
-
 ## Step Two: Download Notebooks
 
 Create a terminal by clicking the `Terminal` icon, and run the following command in the terminal to download a few notebooks to your home directory.
@@ -57,9 +55,9 @@ This notebook will clone the DreamBooth repo and install several python packages
 
 The last step in this notebook will ask for an access token for downloading the Stable Diffusion model from Huggingface. You need to:  
 * Create a [huggingface](https://huggingface.co/) account if you don't have one.
-* Create your access token from "Settings - Access Tokens - New Token," and paste the token into the login field at the end of the notebook (see image below).
-<img src="./images/hf_token.jpg" alt="drawing" style="width:480px;"/>
+* Create your access token from "Settings - Access Tokens - New Token," and paste the token into the login field at the end of the notebook.
 * Accept the [license of Stable Diffusion v1-4 Model Card](https://huggingface.co/CompVis/stable-diffusion-v1-4) if you agree. (Otherwise can't use the model)
+<img src="./images/hf_token.jpg" alt="drawing" style="width:480px;"/>
 <img src="./images/hf_model_card.jpg" alt="drawing" style="width:480px;"/>
 
 ### Upload Images
@@ -77,3 +75,12 @@ You can use these notebooks to play with the model you just trained.
 * `test_prompt.ipynb`: A notebook for prompt engineering. You will use fixed latent input to conduct controlled experiments for the impact of prompt engineering on the model output.
 
 * `test_param.ipynb`: A notebook for trying different parameters for inference. Again, you will use fixed latent input to conduct controlled experiments for the impact of these parameters on the model output. 
+
+
+## Q&A
+
+### How to free GPU memory of unused notebooks?
+
+When a notebook is completed and closed, its kernel may still be alive. To free the GPU memory, you need to go to the `Running Terminals and Kernels` on the left side of the screen and manually shut down the unwanted kernels:
+
+<img src="./images/lambda_cloud_jupyter_hub_kill_kernel.jpg" alt="drawing" style="width:480px;"/>
