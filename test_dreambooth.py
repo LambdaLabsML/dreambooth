@@ -77,13 +77,11 @@ def main():
     tests = {
             "1": ["photo, colorful cinematic portrait of " + token_class_str + ", armor, cyberpunk,background made of brain cells, back light, organic, art by greg rutkowski, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide, "rutkowski"],
             "2": ["pencil sketch portrait of  " + token_class_str + " inpired by greg rutkowski, digital art by artgem", args.num_pred_steps, args.guide, "rutkowskiartgem"],
-            "3": ["photo, colorful cinematic portrait of  " + token_class_str + ", organic armor, cyberpunk, background brain cells mesh, art by greg rutkowski", args.num_pred_steps, args.guide, "rutkowskibraincells"],
-            "4": ["photo,colorful cinematic portrait of " + token_class_str + ", " + token_class_str + " with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
-            "5": ["photo, colorful cinematic portrait of  " + token_class_str + " with organic armor, cyberpunk background,  " + token_class_str + ", greg rutkowski", args.num_pred_steps, args.guide, "cyberpunkrutkowski"],
-            "6": ["photo portrait of  " + token_class_str + " astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
-            "7": ["photo portrait of  " + token_class_str + " as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
-            "8": ["photo portrait of  " + token_class_str + " as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
-            "9": ["impressionist portrait painting of  " + token_class_str + " by Daniel F Gerhartz, (( " + token_class_str + " with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
+            "3": ["photo,colorful cinematic portrait of " + token_class_str + ", " + token_class_str + " with long hair, color lights, on stage, ultrarealistic", args.num_pred_steps, args.guide, "longhair"],
+            "4": ["photo portrait of  " + token_class_str + " astronaut, astronaut, helmet in alien world abstract oil painting, greg rutkowski, detailed face", args.num_pred_steps, args.guide, "astronautrutkowski"],
+            "5": ["photo portrait of  " + token_class_str + " as firefighter, helmet, ultrarealistic, leica 30mm", args.num_pred_steps, args.guide,  "firefighter"],
+            "6": ["photo portrait of  " + token_class_str + " as steampunk warrior, neon organic vines, digital painting", args.num_pred_steps, args.guide, "steampunk"],
+            "7": ["impressionist portrait painting of  " + token_class_str + " by Daniel F Gerhartz, (( " + token_class_str + " with painted in an impressionist style)), nature, trees", args.num_pred_steps, args.guide, "danielgerhartz"],
     }
 
     if args.ddim:
