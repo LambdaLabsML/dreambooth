@@ -12,7 +12,7 @@ Once signed in with your Lambda Cloud account, click the `Launch Instance` butto
 
 <img src="./images/lambda_cloud_dashboard.jpg" alt="drawing" style="width:480px;"/>
 
-Lambda Cloud will ask you for payment information when launching the first instance. Just follow the instructions and be aware that Lambda Cloud will place a __temporary__ `$10 USD pre-auth to verify your card, which will disappear within seven days. Once payment information is provided, you can launch an instance. For this workshop:
+Lambda Cloud will ask you for payment information when launching the first instance. Just follow the instructions and be aware that Lambda Cloud will place a __temporary__ `$10 USD` pre-auth to verify your card, which will disappear within seven days. Once payment information is provided, you can launch an instance. For this workshop:
 * Choose 1xA100 instance (40GB SXM4 or 40GB PCIe are both fine).
 * Any region will work.
 * Don't need to attach a filesystem.
@@ -20,7 +20,7 @@ Lambda Cloud will ask you for payment information when launching the first insta
 
 It takes about two mins to get the instance running (the green tick as shown in the picture below). 
 
-<img src="./images/lambda_cloud_dashboard_instance_ready.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_dashboard_instance_ready.png" alt="drawing" style="width:480px;"/>
 
 You need to click the Cloud IDE `Launch` button (the purple button on the right end) to get access to the Jupyter Hub. If you see a message saying, "Your Jupyter Notebook is down," that means the Jupyter Hub isn't ready and please give it another minute or so. Eventually, it will look like this once it is ready:
 
