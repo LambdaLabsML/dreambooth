@@ -2,3 +2,5 @@
 logs
 datasets
 wandb/
+.ipynb_checkpoints/
+*.pyc

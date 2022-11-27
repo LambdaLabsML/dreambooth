@@ -215,6 +215,8 @@ def make_prior_dataset(args, accelerator):
 
 
 def main(args):
+    os.environ['WANDB_MODE'] = args.wandb_mode
+
     from accelerate import DistributedDataParallelKwargs
 
     ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
@@ -224,8 +226,9 @@ def main(args):
         kwargs_handlers=[ddp_kwargs],
     )
 
-    if accelerator.is_main_process:
-        wandb.init(project="dreambooth", config=OmegaConf.to_container(args))
+    if args.wandb_mode != "disabled":
+        if accelerator.is_main_process:
+            wandb.init(project="dreambooth", config=OmegaConf.to_container(args))
 
     if args.val_prompts is not None:
         fill_placeholders = lambda x: x.replace("__instance__", args.instance_str).replace("__class__", args.class_str)
@@ -498,22 +501,23 @@ def main(args):
                 progress_bar.update(1)
                 global_step += 1
 
-            if accelerator.is_main_process:
-                logs = {
-                    "train/loss": loss,
-                    "train/instance_loss": instance_loss,
-                    "train/prior_loss": prior_loss,
-                    "train/lr": lr_scheduler.get_last_lr()[0],
-                    "train/epoch": epoch,
-                    }
-                wandb.log(logs)
+            if args.wandb_mode != "disabled":
+                if accelerator.is_main_process:
+                    logs = {
+                        "train/loss": loss,
+                        "train/instance_loss": instance_loss,
+                        "train/prior_loss": prior_loss,
+                        "train/lr": lr_scheduler.get_last_lr()[0],
+                        "train/epoch": epoch,
+                        }
+                    wandb.log(logs)
 
             val_steps = 250
             n_val_samples_per_gpu = 2
             val_inference_steps = 100
             val_guidance_scale = 7.5
 
-            if global_step % val_steps == 0:
+            if global_step % val_steps == 0 and args.wandb_mode != "disabled":
 
                 scheduler = DDIMScheduler(
                         beta_start=0.00085,
@@ -567,7 +571,11 @@ def main(args):
             text_encoder=accelerator.unwrap_model(text_encoder),
             revision=args.revision,
         )
-        output_dir = f"{args.output_dir}/{wandb.run.id}"
+        if args.wandb_mode != "disabled":
+            output_dir = f"{args.output_dir}/{wandb.run.id}"
+        else:
+            output_dir = f"{args.output_dir}"
+            os.makedirs(output_dir, exist_ok=True)
         pipeline.save_pretrained(output_dir)
 
     accelerator.end_training()
@@ -575,4 +583,7 @@ def main(args):
 
 if __name__ == "__main__":
     args = parse_args()
+    if args.use_tf32:
+        torch.backends.cuda.matmul.allow_tf32 = True
+        print("TF32 is on --------------------------------")        
     main(args)
