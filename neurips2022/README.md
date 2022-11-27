@@ -32,10 +32,10 @@ You need to click the Cloud IDE `Launch` button (the purple button on the right 
 Create a terminal by clicking the `Terminal` icon, and run the following command in the terminal to download a few notebooks to your home directory.
 
 ```
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/setup.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/train.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/test_param.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/neurips/test_prompt.ipynb
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/setup.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/train.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_param.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_prompt.ipynb
 ```
 
 You need to click the refresh button in the `File Browser` (on the left side of the IDE) to see the notebooks. 
