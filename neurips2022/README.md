@@ -1,6 +1,11 @@
 # NeuRIPS Workshop Guide
 
-## Step One: Launch a Lambda Cloud instance
+1. [Step One: Launch a Lambda Cloud Instance](#step-one-launch-a-lambda-cloud-instance)
+2. [Step Two: Download Notebooks](#step-two-download-notebooks)
+3. [Step Three: Run Notebooks](#step-three-run-notebooks)
+4. [Q&A](#qa)
+
+## Step One: Launch a Lambda Cloud Instance
 
 The hands-on practice requires a Lambda Cloud account and a `1xA100` GPU instance, which costs `$1.10 USD/h`. 
 
@@ -44,7 +49,7 @@ You need to click the refresh button in the `File Browser` (on the left side of 
 
 Now you are ready to kick off the DreamBooth practice!
 
-## Step Three: Run Notebook
+## Step Three: Run Notebooks
 
 ### Run `setup.ipynb`
 

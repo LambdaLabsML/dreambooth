@@ -2,7 +2,7 @@
 
 ## NeuRIPS2022 Workshop
 
-For NeuRIPS workshop, please use this [guide](./neurips2022/NeuRIPS.md) to run the Jupyter notebooks in Lambda Cloud IDE.
+For NeuRIPS2002 Workshop, please use this [guide](./neurips2022/README.md) to train your DreamBooth Model on Lambda Cloud.
 
 
 ## Guide
