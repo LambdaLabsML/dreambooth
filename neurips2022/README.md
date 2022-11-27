@@ -15,7 +15,7 @@ If you wish to sign up, go to [https://cloud.lambdalabs.com/](https://cloud.lamb
 
 Once signed in with your Lambda Cloud account, click the `Launch Instance` button.
 
-<img src="./images/lambda_cloud_dashboard.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_dashboard.jpg" alt="drawing" style="width:640px;"/>
 
 Lambda Cloud will ask you for payment information when launching the first instance. Just follow the instructions and be aware that Lambda Cloud will place a __temporary__ `$10 USD` pre-auth to verify your card, which will disappear within seven days. Once payment information is provided, you can launch an instance. For this workshop:
 * Choose 1xA100 instance (40GB SXM4 or 40GB PCIe are both fine).
@@ -25,11 +25,11 @@ Lambda Cloud will ask you for payment information when launching the first insta
 
 It takes about two mins to get the instance running (the green tick as shown in the picture below). 
 
-<img src="./images/lambda_cloud_dashboard_instance_ready.png" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_dashboard_instance_ready.png" alt="drawing" style="width:640px;"/>
 
 You need to click the Cloud IDE `Launch` button (the purple button on the right end) to get access to the Jupyter Hub. If you see a message saying, "Your Jupyter Notebook is down," that means the Jupyter Hub isn't ready and please give it another minute or so. Eventually, it will look like this once it is ready:
 
-<img src="./images/lambda_cloud_jupyter_hub.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_jupyter_hub.jpg" alt="drawing" style="width:640px;"/>
 
 
 ## Step Two: Download Notebooks
@@ -45,7 +45,7 @@ wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips202
 
 You need to click the refresh button in the `File Browser` (on the left side of the IDE) to see the notebooks. 
 
-<img src="./images/lambda_cloud_dashboard_download_ipynb.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_dashboard_download_ipynb.jpg" alt="drawing" style="width:640px;"/>
 
 Now you are ready to kick off the DreamBooth practice!
 
@@ -62,8 +62,8 @@ The last step in this notebook will ask for an access token for downloading the 
 * Create a [huggingface](https://huggingface.co/) account if you don't have one.
 * Create your access token from "Settings - Access Tokens - New Token," and paste the token into the login field at the end of the notebook.
 * Accept the [license of Stable Diffusion v1-4 Model Card](https://huggingface.co/CompVis/stable-diffusion-v-1-4-original) if you agree. (Otherwise can't use the model)
-<img src="./images/hf_token.jpg" alt="drawing" style="width:480px;"/>
-<img src="./images/hf_model_card.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/hf_token.jpg" alt="drawing" style="width:640px;"/>
+<img src="./images/hf_model_card.jpg" alt="drawing" style="width:640px;"/>
 
 ### Upload Images
 
@@ -74,6 +74,8 @@ This notebook trains a DreamBooth model use the images inside of `/home/ubuntu/d
 
 Once trained, it will also run a few inferences and display the prompts and sampled images at the end of the notebook.
 
+<img src="./images/train.jpg" alt="drawing" style="width:640px;"/>
+
 ### Run `test_prompt.ipynb` and `test.ipynb`
 You can use these notebooks to play with the model you just trained. 
 
@@ -81,6 +83,7 @@ You can use these notebooks to play with the model you just trained.
 
 * `test_param.ipynb`: A notebook for trying different parameters for inference. Again, you will use fixed latent input to conduct controlled experiments for the impact of these parameters on the model output. 
 
+<img src="./images/test_param.jpg" alt="drawing" style="width:640px;"/>
 
 ## Q&A
 
@@ -88,4 +91,4 @@ You can use these notebooks to play with the model you just trained.
 
 When a notebook is completed and closed, its kernel may still be alive. To free the GPU memory, you need to go to the `Running Terminals and Kernels` on the left side of the screen and manually shut down the unwanted kernels:
 
-<img src="./images/lambda_cloud_jupyter_hub_kill_kernel.jpg" alt="drawing" style="width:480px;"/>
+<img src="./images/lambda_cloud_jupyter_hub_kill_kernel.jpg" alt="drawing" style="width:640px;"/>
