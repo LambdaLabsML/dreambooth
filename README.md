@@ -2,12 +2,12 @@
 
 ## NeuRIPS2022 Workshop
 
-For NeuRIPS workshop, please use this [guide](./doc/NeuRIPS.md) to run the Jupyter notebooks in Lambda Cloud IDE.
+For NeuRIPS workshop, please use this [guide](./neurips2022/NeuRIPS.md) to run the Jupyter notebooks in Lambda Cloud IDE.
 
 
 ## Guide
 
-Install in 
+Local install using Python virtual environment.
 
 ```
 python -m venv .venv --prompt dreambooth && \
