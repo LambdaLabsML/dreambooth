@@ -3,7 +3,7 @@
 1. [Step One: Launch a Lambda Cloud Instance](#step-one-launch-a-lambda-cloud-instance)
 2. [Step Two: Download Notebooks](#step-two-download-notebooks)
 3. [Step Three: Run Notebooks](#step-three-run-notebooks)
-4. [Q&A](#qa)
+5. [Q&A](#qa)
 
 ## Step One: Launch a Lambda Cloud Instance
 
@@ -40,7 +40,8 @@ Create a terminal by clicking the `Terminal` icon, and run the following command
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/setup.ipynb && \
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/train.ipynb && \
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_param.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_prompt.ipynb
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_prompt.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/master/neurips2022/test_many_prompts.ipynb
 ```
 
 You need to click the refresh button in the `File Browser` (on the left side of the IDE) to see the notebooks. 
@@ -76,14 +77,15 @@ Once trained, it will also run a few inferences and display the prompts and samp
 
 <img src="./images/train.jpg" alt="drawing" style="width:640px;"/>
 
-### Run `test_prompt.ipynb` and `test.ipynb`
+### Run `test_prompt.ipynb`, `test_many_prompts.ipynb`, and `test_param.ipynb`
 You can use these notebooks to play with the model you just trained. 
 
 * `test_prompt.ipynb`: A notebook for prompt engineering. You will use fixed latent input to conduct controlled experiments for the impact of prompt engineering on the model output.
 
+* `test_many_prompts.ipynb`: A notebook that let you try some pre-collected prompts.
+
 * `test_param.ipynb`: A notebook for trying different parameters for inference. Again, you will use fixed latent input to conduct controlled experiments for the impact of these parameters on the model output. 
 
-<img src="./images/test_param.jpg" alt="drawing" style="width:640px;"/>
 
 ## Q&A
 
@@ -92,3 +94,8 @@ You can use these notebooks to play with the model you just trained.
 When a notebook is completed and closed, its kernel may still be alive. To free the GPU memory, you need to go to the `Running Terminals and Kernels` on the left side of the screen and manually shut down the unwanted kernels:
 
 <img src="./images/lambda_cloud_jupyter_hub_kill_kernel.jpg" alt="drawing" style="width:640px;"/>
+
+
+### Where can I find inspirations for prompts?
+
+Try [publicprompts.art](https://publicprompts.art/) and [Gustavosta's Prompt dataset](https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts).
