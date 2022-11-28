@@ -77,6 +77,8 @@ Once trained, it will also run a few inferences and display the prompts and samp
 
 <img src="./images/train.jpg" alt="drawing" style="width:640px;"/>
 
+Also don't forget to checkout [our case studies](https://wandb.ai/justinpinkney/dreambooth/reports/Training-comparisons--VmlldzozMDM0MzY2) for different training settings.
+
 ### Run `test_prompt.ipynb`, `test_many_prompts.ipynb`, and `test_param.ipynb`
 You can use these notebooks to play with the model you just trained. 
 
