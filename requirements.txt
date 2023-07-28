@@ -1,11 +1,8 @@
---extra-index-url https://download.pytorch.org/whl/cu116
-torch==1.13.0+cu116
-torchvision==0.14.0+cu116
-diffusers==0.7.2
-accelerate==0.14.0
-transformers==4.24.0
-ftfy==6.1.1
-tensorboard==2.11.0
-modelcards==0.1.6
-wandb
+diffusers>=0.7.2
+accelerate>=0.14.0
+transformers>=4.24.0
+ftfy>=6.1.1
+tensorboard>=2.11.0
+modelcards>=0.1.6
 omegaconf
+bitsandbytes
