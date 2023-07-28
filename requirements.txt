@@ -6,3 +6,4 @@ tensorboard>=2.11.0
 modelcards>=0.1.6
 omegaconf
 bitsandbytes
+protobuf==3.20.*
