@@ -1,4 +1,4 @@
-diffusers>=0.7.2
+git+https://github.com/huggingface/diffusers
 accelerate>=0.14.0
 transformers>=4.24.0
 ftfy>=6.1.1
@@ -6,3 +6,4 @@ tensorboard>=2.11.0
 modelcards>=0.1.6
 omegaconf
 bitsandbytes
+protobuf==3.20.*
