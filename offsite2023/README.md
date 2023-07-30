@@ -15,13 +15,11 @@ A single A10 instance should be enough. Dreambooth training will run faster on a
 Create a terminal by clicking the `Terminal` icon, and run the following command in the terminal to download a few notebooks to your home directory.
 
 ```
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2022/setup.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2022/train.ipynb
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/setup.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/train.ipynb
 ```
 
 You need to click the refresh button in the `File Browser` (on the left side of the IDE) to see the notebooks. 
-
-<img src="./images/lambda_cloud_dashboard_download_ipynb.jpg" alt="drawing" style="width:640px;"/>
 
 Now you are ready to kick off the DreamBooth practice!
 
@@ -29,10 +27,9 @@ Now you are ready to kick off the DreamBooth practice!
 
 ### Run `setup.ipynb`
 
-This notebook will clone the DreamBooth repo and install several python packages. It will also create several folders in the home directory:
-* `/home/ubuntu/data`: This directory stores training photos.
-* `/home/ubuntu/model`: This is the directory where the trained model will be saved.
-* `/home/ubuntu/output`: This is the directory where the sampled images will be saved.
+This notebook will clone the DreamBooth repo and install several python packages. 
+
+It will also create a `/home/ubuntu/data`` folder in the home directory for you to upload training images.
 
 The last step in this notebook will ask for an access token for downloading the Stable Diffusion model from Huggingface. You need to:  
 * Create a [huggingface](https://huggingface.co/) account if you don't have one.
@@ -50,19 +47,8 @@ This notebook trains a DreamBooth model use the images inside of `/home/ubuntu/d
 
 Once trained, it will also run a few inferences and display the prompts and sampled images at the end of the notebook.
 
-<img src="./images/train.jpg" alt="drawing" style="width:640px;"/>
 
 Also don't forget to checkout [our case studies](https://wandb.ai/justinpinkney/dreambooth/reports/Training-comparisons--VmlldzozMDM0MzY2) for different training settings.
-
-### Run `test_prompt.ipynb`, `test_many_prompts.ipynb`, and `test_param.ipynb`
-You can use these notebooks to play with the model you just trained. 
-
-* `test_prompt.ipynb`: A notebook for prompt engineering. You will use fixed latent input to conduct controlled experiments for the impact of prompt engineering on the model output.
-
-* `test_many_prompts.ipynb`: A notebook that let you try some pre-collected prompts.
-
-* `test_param.ipynb`: A notebook for trying different parameters for inference. Again, you will use fixed latent input to conduct controlled experiments for the impact of these parameters on the model output. 
-
 
 ## Q&A
 
