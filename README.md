@@ -1,5 +1,9 @@
 # Dreambooth
 
+## OffSite2023 Workshop
+For the OffSite2023 Workshop, please use this [guide](./offsite2023/README.md).
+
+
 ## NeuRIPS2022 Workshop
 
 For NeuRIPS2002 Workshop, please use this [guide](./neurips2022/README.md) to train your DreamBooth Model on Lambda Cloud.
