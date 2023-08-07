@@ -6,3 +6,4 @@ tensorboard==2.11.0
 modelcards==0.1.6
 gdown==4.7.1
 openai==0.27.8
+wandb==0.15.7

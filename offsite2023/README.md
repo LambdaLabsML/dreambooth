@@ -16,7 +16,9 @@ Create a terminal by clicking the `Terminal` icon, and run the following command
 
 ```
 wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/setup.ipynb && \
-wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/train.ipynb
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/train.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/train_wandb.ipynb && \
+wget https://raw.githubusercontent.com/LambdaLabsML/dreambooth/offsite/offsite2023/test_func_call.ipynb
 ```
 
 You need to click the refresh button in the `File Browser` (on the left side of the IDE) to see the notebooks. 
